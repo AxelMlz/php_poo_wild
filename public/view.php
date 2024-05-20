@@ -20,13 +20,13 @@
         <div class="animals">
             <?php foreach ($animals ?? [] as $key => $animal) : ?>
                 <article>
-                    <?php if(method_exists($animal, 'sayHello')) : ?> 
-                    <div class="hello">
-                        <?= $animal->sayHello() ?>
-                    </div>
+                    <?php if (method_exists($animal, 'speak')) : ?>
+                        <div class="hello">
+                            <?= $animal->speak() ?>
+                        </div>
                     <?php endif; ?>
                     <div></div>
-                    <img class="animal-img" width="<?= method_exists($animal, 'getSize') ? $animal->getSize() : '100' . '%' ?>" src="assets/images/animals/<?= method_exists($animal, 'getName') ? $animal->getName() : 'undefined' . $key % 3 ?>.png" alt="">
+                    <img class="animal-img" width="100 : '100' . '%' ?>" src="assets/images/animals/<?= method_exists($animal, 'getName') ? $animal->getName() : 'undefined' . $key % 3 ?>.png" alt="">
                     <div class="notice">
                         <div class="title">
                             <h1>
@@ -37,6 +37,26 @@
                             <?php endif ?>
                         </div>
                         <hr />
+                        <h2>
+                            Size (image) :
+                            <?= method_exists($animal, 'getSizeWithUnit') ? $animal->getSizeWithUnit() : 'Undefined size' ?>
+                        </h2>
+                        <h2>
+                            Number of limbs :
+                            <?= method_exists($animal, 'getPaws') ? $animal->getPaws() : 'Undefined number of paws' ?>
+                        </h2>
+                        <h2>
+                            is Carnivorous :
+                            <?= $animal->isCarnivorous() ? 'carnivorous' : 'vegetarian' ?>
+                        </h2>
+                        <h2>
+                            is Dangerous :
+                            <?= $animal->isDangerous() ? 'yes' : 'no' ?>
+                        </h2>
+                        <h2>
+                            is Threatened :
+                            <?= method_exists($animal, 'getThreatenedLevel') ? $animal->getThreatenedLevel() : 'Unknown endangerement status' ?>
+                        </h2>
                     </div>
                 </article>
             <?php endforeach; ?>
